@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nadielly Marques — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --pink:       #E84B8A;
+      --pink-light: #F9B8D4;
+      --pink-bg:    #F9D0E3;
+      --dark:       #1a1a1a;
+      --mid:        #555;
+      --white:      #ffffff;
+      --offwhite:   #fdf5f9;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--offwhite);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ── */
+    .display { font-family: 'Bebas Neue', sans-serif; letter-spacing: .03em; }
+    .pink { color: var(--pink); }
+    .section { padding: 80px 6vw; }
+    .section--dark { background: var(--dark); color: var(--white); }
+    .section--pink { background: var(--pink-bg); }
+    .label {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--pink);
+      border-bottom: 2px solid var(--pink);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 6vw;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232,75,138,.15);
+    }
+    nav .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--pink); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { text-decoration: none; font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--dark); transition: color .2s; }
+    nav a:hover { color: var(--pink); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: 70px;
+      background: var(--dark);
+      overflow: hidden;
+    }
+    .hero-text { padding: 6vw; z-index: 1; }
+    .hero-text .eyebrow {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+      margin-bottom: .8rem;
+    }
+    .hero-text h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      line-height: .92;
+      color: var(--white);
+    }
+    .hero-text h1 span { color: var(--pink); display: block; }
+    .hero-text p {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.65);
+      max-width: 38ch;
+    }
+    .hero-text .handle {
+      margin-top: 1.5rem;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      color: var(--pink-light);
+    }
+    .hero-img {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, transparent 35%);
+      z-index: 1;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(1) contrast(1.05);
+      opacity: .85;
+    }
+
+    /* ── SOBRE ── */
+    #sobre { max-width: 900px; margin: 0 auto; }
+    #sobre h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.4rem; }
+    #sobre p { font-size: 1.05rem; line-height: 1.8; color: var(--mid); max-width: 64ch; }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 2rem;
+    }
+    .skill-tag {
+      background: var(--pink-bg);
+      color: var(--pink);
+      border: 1.5px solid var(--pink-light);
+      border-radius: 100px;
+      padding: .35rem 1rem;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+    }
+
+    /* ── NARRATIVAS ── */
+    #narrativas h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5.5vw, 5rem); margin-bottom: .5rem; }
+    #narrativas .intro { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.65); max-width: 56ch; margin-bottom: 2.5rem; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 10px;
+    }
+    .photo-grid div {
+      background: var(--mid);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-grid div span {
+      font-size: .7rem;
+      color: rgba(255,255,255,.4);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    /* placeholder tints for the 6 photos */
+    .photo-grid div:nth-child(1) { background: #2e2e2e; }
+    .photo-grid div:nth-child(2) { background: #1a1a1a; }
+    .photo-grid div:nth-child(3) { background: #e88033; opacity: .7; }
+    .photo-grid div:nth-child(4) { background: #4a7a5a; opacity: .7; }
+    .photo-grid div:nth-child(5) { background: #3a3a3a; }
+    .photo-grid div:nth-child(6) { background: #b84040; opacity: .7; }
+
+    /* ── EXPERIÊNCIA ── */
+    #exp { }
+    #exp h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5.5vw, 5rem); margin-bottom: 3rem; }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .exp-card {
+      background: var(--white);
+      border: 1.5px solid var(--pink-light);
+      border-radius: 12px;
+      padding: 2rem 1.6rem;
+    }
+    .exp-card .year {
+      display: inline-block;
+      background: var(--pink-bg);
+      color: var(--pink);
+      border-radius: 100px;
+      padding: .25rem .9rem;
+      font-size: .8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .exp-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: .4rem;
+    }
+    .exp-card .company { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--pink); margin-bottom: 1rem; }
+    .exp-card p { font-size: .9rem; line-height: 1.7; color: var(--mid); }
+
+    /* ── PROJETOS (CLIENTS) ── */
+    #projetos h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5.5vw, 5rem); margin-bottom: .6rem; }
+    #projetos .subtitle { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 3rem; max-width: 55ch; line-height: 1.7; }
+
+    .client-section { margin-bottom: 5rem; }
+    .client-section:last-child { margin-bottom: 0; }
+    .client-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--pink);
+      margin-bottom: .4rem;
+    }
+    .client-desc { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.55); margin-bottom: 1.6rem; max-width: 62ch; }
+
+    /* mosaic grids */
+    .mosaic {
+      display: grid;
+      gap: 8px;
+    }
+    .mosaic--4 { grid-template-columns: repeat(4, 1fr); }
+    .mosaic--3 { grid-template-columns: repeat(3, 1fr); }
+    .mosaic--2 { grid-template-columns: repeat(2, 1fr); }
+
+    .mosaic-card {
+      border-radius: 6px;
+      overflow: hidden;
+      min-height: 160px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      position: relative;
+      cursor: default;
+      transition: transform .2s;
+    }
+    .mosaic-card:hover { transform: scale(1.02); }
+    .mosaic-card .card-label {
+      position: relative;
+      z-index: 2;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.9);
+    }
+    .mosaic-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
+    }
+
+    /* Olaser card colours */
+    .olaser-1  { background: linear-gradient(135deg, #0d5c8a 0%, #1287c5 100%); }
+    .olaser-2  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+    .olaser-3  { background: linear-gradient(135deg, #3d5a80 0%, #98c1d9 100%); }
+    .olaser-4  { background: linear-gradient(135deg, #e9c46a 0%, #f4a261 100%); }
+    .olaser-5  { background: linear-gradient(135deg, #264653 0%, #2a9d8f 100%); }
+    .olaser-6  { background: linear-gradient(135deg, #e76f51 0%, #f4a261 100%); }
+
+    /* Axxis card colours */
+    .axxis-1  { background: linear-gradient(135deg, #0f1923 0%, #1a2e3b 100%); }
+    .axxis-2  { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
+    .axxis-3  { background: linear-gradient(135deg, #0b2545 0%, #134074 100%); }
+    .axxis-4  { background: linear-gradient(135deg, #13262f 0%, #1b4965 100%); }
+    .axxis-5  { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
+    .axxis-6  { background: linear-gradient(135deg, #1a0a00 0%, #3d1c00 100%); }
+
+    /* Vinelly card colours */
+    .vin-1    { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+    .vin-2    { background: linear-gradient(135deg, #2d132c 0%, #ee4540 100%); }
+    .vin-3    { background: linear-gradient(135deg, #c72c41 0%, #ee4540 100%); }
+    .vin-4    { background: linear-gradient(135deg, #6a4c93 0%, #9b5de5 100%); }
+
+    /* Metrics card */
+    .metrics-card {
+      background: var(--white);
+      border: 1.5px solid var(--pink-light);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .metric { text-align: center; }
+    .metric .value { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--pink); }
+    .metric .key { font-size: .72rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mid); margin-top: .2rem; }
+
+    /* ── CTA / FOOTER ── */
+    #contato {
+      text-align: center;
+      padding: 100px 6vw;
+      background: var(--pink);
+    }
+    #contato h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--white);
+      line-height: .95;
+      margin-bottom: 1.4rem;
+    }
+    #contato p { color: rgba(255,255,255,.8); font-size: 1rem; margin-bottom: 2.5rem; }
+    .btn {
+      display: inline-block;
+      padding: .9rem 2.4rem;
+      border-radius: 100px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+    .btn--white { background: var(--white); color: var(--pink); }
+
+    footer {
+      background: var(--dark);
+      text-align: center;
+      padding: 2rem 6vw;
+      font-size: .78rem;
+      color: rgba(255,255,255,.35);
+      letter-spacing: .05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-img { display: none; }
+      #hero { min-height: auto; padding: 90px 6vw 60px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .mosaic--4 { grid-template-columns: 1fr 1fr; }
+      .metrics-card { grid-template-columns: 1fr 1fr; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      nav ul { display: none; }
+      .mosaic--4, .mosaic--3, .mosaic--2 { grid-template-columns: 1fr; }
+      .metrics-card { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">NM</span>
+  <ul>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#exp">Experiência</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Por Nadielly Marques · @nadieelly</p>
+    <h1>
+      Nadielly<br />
+      <span>Marques</span>
+    </h1>
+    <p>Profissional em desenvolvimento na área de marketing digital — redes sociais, tráfego pago e criação de campanhas com propósito.</p>
+    <p class="handle">📸 @nadieelly</p>
+  </div>
+  <div class="hero-img" aria-hidden="true">
+    <!-- portrait placeholder; replace src with your photo -->
+    <img src="https://placehold.co/800x1000/1a1a1a/555555?text=Nadielly+Marques" alt="Nadielly Marques" />
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section" id="sobre">
+  <span class="label">Sobre mim</span>
+  <div>
+    <h2 class="display">Criatividade<br /><span class="pink">com propósito</span></h2>
+    <p>Profissional em desenvolvimento na área de marketing digital, com experiência prática em redes sociais, tráfego pago e criação de campanhas. Apaixonada por transformar ideias em conteúdos estratégicos que geram resultados reais. Acredito no poder da comunicação visual, da análise de dados e na criatividade com propósito.</p>
+    <p style="margin-top:1rem">Gosto de inovar, acompanhar tendências e trazer autenticidade em tudo o que crio.</p>
+    <div class="skills-grid">
+      <span class="skill-tag">Redes Sociais</span>
+      <span class="skill-tag">Tráfego Pago</span>
+      <span class="skill-tag">Mlabs</span>
+      <span class="skill-tag">CRM</span>
+      <span class="skill-tag">CapCut</span>
+      <span class="skill-tag">SEO · Google</span>
+      <span class="skill-tag">Design Gráfico</span>
+      <span class="skill-tag">Identidade Visual</span>
+      <span class="skill-tag">Copywriting</span>
+      <span class="skill-tag">Fotografia</span>
+    </div>
+  </div>
+</section>
+
+<!-- NARRATIVAS VISUAIS -->
+<section class="section section--dark" id="narrativas">
+  <span class="label">Narrativas Visuais</span>
+  <h2 class="display">Cada imagem<br /><span class="pink">conta uma história</span></h2>
+  <p class="intro">Desde a adolescência, a fotografia tem sido minha forma de expressão — capturando momentos que vão além da imagem. Com o tempo, essa paixão se uniu ao meu olhar publicitário, ampliando minha visão sobre composição, luz e narrativa visual.</p>
+  <div class="photo-grid">
+    <div><span>Retrato</span></div>
+    <div><span>B&amp;W</span></div>
+    <div><span>Paisagem</span></div>
+    <div><span>Família</span></div>
+    <div><span>Editorial</span></div>
+    <div><span>Urbano</span></div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section class="section section--pink" id="exp">
+  <span class="label">Trajetória</span>
+  <h2 class="display">Working<br /><span class="pink">Experience</span></h2>
+  <div class="exp-grid">
+
+    <div class="exp-card">
+      <div class="year">2024</div>
+      <h3>Analista de Marketing</h3>
+      <div class="company">Olaser Depilação</div>
+      <p>Responsável pela criação de artes para prospecção e captação de leads. Desenvolvimento de campanhas de mídias sociais e materiais promocionais com foco em resultados e fortalecimento da presença online da marca.</p>
+    </div>
+
+    <div class="exp-card">
+      <div class="year">2025</div>
+      <h3>Assistente de Marketing</h3>
+      <div class="company">Axxis Contabilidade &amp; BPO</div>
+      <p>Criação de conteúdo para redes sociais, apoio em campanhas de tráfego pago e desenvolvimento de materiais institucionais. Construção de comunicação visual profissional, acompanhamento de métricas e resultados.</p>
+    </div>
+
+    <div class="exp-card">
+      <div class="year">2025</div>
+      <h3>Cultura Organizacional</h3>
+      <div class="company">Ana Carneiro Consultoria</div>
+      <p>Criação de 4 brandbooks de cultura organizacional, com foco em identidade verbal e visual, tom de voz, valores da marca e comunicação interna. Projeto para empresas em reposicionamento ou alinhamento de cultura.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section class="section section--dark" id="projetos">
+  <span class="label">Portfólio</span>
+  <h2 class="display">Projetos<br /><span class="pink">em destaque</span></h2>
+  <p class="subtitle">Todos os projetos foram desenvolvidos por mim, desde o conceito até a execução final — identidade visual, design gráfico, conteúdo, vídeos e estratégias visuais.</p>
+
+  <!-- OLASER -->
+  <div class="client-section">
+    <div class="client-name">Olaser Depilação</div>
+    <p class="client-desc">Social media, campanhas de tráfego pago, carrosséis, reels e materiais promocionais para a clínica de depilação a laser.</p>
+    <div class="mosaic mosaic--4">
+      <div class="mosaic-card olaser-1"><span class="card-label">Promo Verão</span></div>
+      <div class="mosaic-card olaser-2"><span class="card-label">Conheça</span></div>
+      <div class="mosaic-card olaser-3"><span class="card-label">Semana da Beleza</span></div>
+      <div class="mosaic-card olaser-4"><span class="card-label">Grupo VIP</span></div>
+      <div class="mosaic-card olaser-5"><span class="card-label">Clareamento Íntimo</span></div>
+      <div class="mosaic-card olaser-6"><span class="card-label">Botox Day</span></div>
+      <div class="mosaic-card olaser-1" style="min-height:120px"><span class="card-label">Reel · Depilação Laser</span></div>
+      <div class="mosaic-card olaser-2" style="min-height:120px"><span class="card-label">Laser Lavieen</span></div>
+    </div>
+
+    <!-- metrics from page 8 -->
+    <div class="metrics-card">
+      <div class="metric"><div class="value">5.672</div><div class="key">Visualizações</div></div>
+      <div class="metric"><div class="value">3.795</div><div class="key">Alcance</div></div>
+      <div class="metric"><div class="value">115</div><div class="key">Engajamentos</div></div>
+      <div class="metric"><div class="value">R$2,05</div><div class="key">CPM mensagem</div></div>
+    </div>
+  </div>
+
+  <!-- AXXIS -->
+  <div class="client-section">
+    <div class="client-name">Axxis Contabilidade</div>
+    <p class="client-desc">Social media, carrosseis infinitos, endomarketing, apresentações institucionais e estratégia de conteúdo digital com funil de atração e educação.</p>
+    <div class="mosaic mosaic--3">
+      <div class="mosaic-card axxis-1"><span class="card-label">Dia do Trabalhador</span></div>
+      <div class="mosaic-card axxis-2"><span class="card-label">Fitness &amp; Wellness</span></div>
+      <div class="mosaic-card axxis-3"><span class="card-label">Construção &amp; Engenharia</span></div>
+      <div class="mosaic-card axxis-4"><span class="card-label">Lucro Presumido</span></div>
+      <div class="mosaic-card axxis-5"><span class="card-label">Fator R 2026</span></div>
+      <div class="mosaic-card axxis-6"><span class="card-label">Lucros &amp; Dividendos</span></div>
+    </div>
+
+    <div style="margin-top:1.5rem">
+      <div class="mosaic mosaic--2">
+        <div class="mosaic-card axxis-1" style="min-height:200px">
+          <span class="card-label">Carrossel Infinito · Sócios Operadores</span>
+        </div>
+        <div class="mosaic-card axxis-3" style="min-height:200px">
+          <span class="card-label">Carrossel Infinito · Simples Nacional</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem">
+      <div class="mosaic mosaic--2">
+        <div class="mosaic-card" style="background:linear-gradient(135deg,#0d1b2a 0%,#1b2838 100%);min-height:160px">
+          <span class="card-label">Endomarketing · Celebra Axxis 7 Anos</span>
+        </div>
+        <div class="mosaic-card" style="background:linear-gradient(135deg,#0d1b2a 0%,#23344a 100%);min-height:160px">
+          <span class="card-label">Blog · Reforma Tributária</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VINELLY / OUTROS -->
+  <div class="client-section">
+    <div class="client-name">Vinelly Criativ &amp; Outros</div>
+    <p class="client-desc">Projetos variados: identidade visual, social media para academia, cafeteria e campanhas sazonais.</p>
+    <div class="mosaic mosaic--4">
+      <div class="mosaic-card vin-1"><span class="card-label">Academia · Reel</span></div>
+      <div class="mosaic-card vin-2"><span class="card-label">Dia da Mulher</span></div>
+      <div class="mosaic-card vin-3"><span class="card-label">Promo Verão</span></div>
+      <div class="mosaic-card vin-4"><span class="card-label">Bella Luna Cafeteria · Logo</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CTA / CONTATO -->
+<section id="contato">
+  <h2 class="display">Vamos criar<br />juntos?</h2>
+  <p>Aberta a projetos, freelas e novas oportunidades.</p>
+  <a class="btn btn--white" href="https://instagram.com/nadieelly" target="_blank" rel="noopener">
+    Instagram @nadieelly
+  </a>
+</section>
+
+<footer>
+  © 2025 Nadielly Marques · Marketing Digital · Fotografia · Design
+</footer>
+
+</body>
+</html>
