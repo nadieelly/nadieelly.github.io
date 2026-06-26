@@ -157,7 +157,6 @@
       gap: 10px;
     }
     .photo-grid div {
-      background: var(--mid);
       border-radius: 4px;
       overflow: hidden;
       display: flex;
@@ -165,18 +164,13 @@
       justify-content: center;
     }
     .photo-grid div span {
-      font-size: .7rem;
-      color: rgba(255,255,255,.4);
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
       letter-spacing: .08em;
       text-transform: uppercase;
+      z-index: 2;
     }
-    /* placeholder tints */
-    .photo-grid div:nth-child(1) { background: #2e2e2e; }
-    .photo-grid div:nth-child(2) { background: #1a1a1a; }
-    .photo-grid div:nth-child(3) { background: #e88033; opacity: .7; }
-    .photo-grid div:nth-child(4) { background: #4a7a5a; opacity: .7; }
-    .photo-grid div:nth-child(5) { background: #3a3a3a; }
-    .photo-grid div:nth-child(6) { background: #b84040; opacity: .7; }
 
     /* ── EXPERIÊNCIA ── */
     #exp { }
@@ -252,6 +246,7 @@
       padding: 1rem;
       position: relative;
       cursor: pointer;
+      background-color: var(--mid); /* Fundo padrão caso a imagem não carregue */
       transition: transform .2s, box-shadow .2s;
     }
     .mosaic-card:hover { 
@@ -272,30 +267,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
+      background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 60%);
     }
-
-    /* Olaser */
-    .olaser-1  { background: linear-gradient(135deg, #0d5c8a 0%, #1287c5 100%); }
-    .olaser-2  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
-    .olaser-3  { background: linear-gradient(135deg, #3d5a80 0%, #98c1d9 100%); }
-    .olaser-4  { background: linear-gradient(135deg, #e9c46a 0%, #f4a261 100%); }
-    .olaser-5  { background: linear-gradient(135deg, #264653 0%, #2a9d8f 100%); }
-    .olaser-6  { background: linear-gradient(135deg, #e76f51 0%, #f4a261 100%); }
-
-    /* Axxis */
-    .axxis-1  { background: linear-gradient(135deg, #0f1923 0%, #1a2e3b 100%); }
-    .axxis-2  { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
-    .axxis-3  { background: linear-gradient(135deg, #0b2545 0%, #134074 100%); }
-    .axxis-4  { background: linear-gradient(135deg, #13262f 0%, #1b4965 100%); }
-    .axxis-5  { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
-    .axxis-6  { background: linear-gradient(135deg, #1a0a00 0%, #3d1c00 100%); }
-
-    /* Vinelly */
-    .vin-1    { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
-    .vin-2    { background: linear-gradient(135deg, #2d132c 0%, #ee4540 100%); }
-    .vin-3    { background: linear-gradient(135deg, #c72c41 0%, #ee4540 100%); }
-    .vin-4    { background: linear-gradient(135deg, #6a4c93 0%, #9b5de5 100%); }
 
     .metrics-card {
       background: var(--white);
@@ -423,7 +396,7 @@
       height: 100%;
       object-fit: cover;
       scroll-snap-align: center; 
-      scroll-snap-stop: always; /* ← Essa é a trava mágica que impede pular slides */
+      scroll-snap-stop: always; 
       display: block;
     }
 
@@ -545,8 +518,10 @@
     <p>Profissional em desenvolvimento na área de marketing digital — redes sociais, tráfego pago e criação de campanhas com propósito.</p>
     <p class="handle">📸 @nadieelly</p>
   </div>
+  
+  <!-- AQUI VAI A FOTO DE PERFIL PRINCIPAL -->
   <div class="hero-img" aria-hidden="true">
-    <img src="https://placehold.co/800x1000/1a1a1a/555555?text=Nadielly+Marques" alt="Nadielly Marques" />
+    <img src="./assets/img/foto-perfil.jpg" alt="Nadielly Marques" />
   </div>
 </section>
 
@@ -572,18 +547,32 @@
   </div>
 </section>
 
-<!-- NARRATIVAS VISUAIS -->
+<!-- NARRATIVAS VISUAIS (PHOTO GRID) -->
 <section class="section section--dark" id="narrativas">
   <span class="label">Narrativas Visuais</span>
   <h2 class="display">Cada imagem<br /><span class="pink">conta uma história</span></h2>
   <p class="intro">Desde a adolescência, a fotografia tem sido minha forma de expressão — capturando momentos que vão além da imagem. Com o tempo, essa paixão se uniu ao meu olhar publicitário, ampliando minha visão sobre composição, luz e narrativa visual.</p>
+  
+  <!-- AQUI VÃO AS 6 FOTOS DO GRID -->
   <div class="photo-grid">
-    <div><span>Retrato</span></div>
-    <div><span>B&amp;W</span></div>
-    <div><span>Paisagem</span></div>
-    <div><span>Família</span></div>
-    <div><span>Editorial</span></div>
-    <div><span>Urbano</span></div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-retrato.jpg'); background-size: cover; background-position: center;">
+      <span>Retrato</span>
+    </div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-bw.jpg'); background-size: cover; background-position: center;">
+      <span>B&amp;W</span>
+    </div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-paisagem.jpg'); background-size: cover; background-position: center;">
+      <span>Paisagem</span>
+    </div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-familia.jpg'); background-size: cover; background-position: center;">
+      <span>Família</span>
+    </div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-editorial.jpg'); background-size: cover; background-position: center;">
+      <span>Editorial</span>
+    </div>
+    <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('./assets/img/narrativas-urbano.jpg'); background-size: cover; background-position: center;">
+      <span>Urbano</span>
+    </div>
   </div>
 </section>
 
@@ -629,18 +618,25 @@
     <p class="client-desc">Social media, campanhas de tráfego pago, carrosséis, reels e materiais promocionais para a clínica de depilação a laser.</p>
     
     <div class="mosaic mosaic--4">
-      <div class="mosaic-card olaser-1" onclick="openModal('image', 'https://placehold.co/800x800/0d5c8a/ffffff?text=Promo+Verao', 'Promo Verão')"><span class="card-label">Promo Verão</span></div>
-      <div class="mosaic-card olaser-2" onclick="openModal('image', 'https://placehold.co/800x800/1a1a2e/ffffff?text=Conheca+a+Olaser', 'Conheça')"><span class="card-label">Conheça</span></div>
-      <div class="mosaic-card olaser-3" onclick="openModal('image', 'https://placehold.co/800x800/3d5a80/ffffff?text=Semana+da+Beleza', 'Semana da Beleza')"><span class="card-label">Semana da Beleza</span></div>
-      <div class="mosaic-card olaser-4" onclick="openModal('image', 'https://placehold.co/800x800/e9c46a/ffffff?text=Grupo+VIP', 'Grupo VIP')"><span class="card-label">Grupo VIP</span></div>
-      <div class="mosaic-card olaser-5" onclick="openModal('image', 'https://placehold.co/800x800/264653/ffffff?text=Clareamento+Intimo', 'Clareamento Íntimo')"><span class="card-label">Clareamento Íntimo</span></div>
-      <div class="mosaic-card olaser-6" onclick="openModal('image', 'https://placehold.co/800x800/e76f51/ffffff?text=Botox+Day', 'Botox Day')"><span class="card-label">Botox Day</span></div>
+      <!-- Cards de Imagem -->
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-verao.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-verao.jpg', 'Promo Verão')"><span class="card-label">Promo Verão</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-conheca.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-conheca.jpg', 'Conheça')"><span class="card-label">Conheça</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-semana.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-semana.jpg', 'Semana da Beleza')"><span class="card-label">Semana da Beleza</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-vip.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-vip.jpg', 'Grupo VIP')"><span class="card-label">Grupo VIP</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-intimo.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-intimo.jpg', 'Clareamento Íntimo')"><span class="card-label">Clareamento Íntimo</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/olaser-capa-botox.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/olaser-botox.jpg', 'Botox Day')"><span class="card-label">Botox Day</span></div>
       
       <!-- Vídeos -->
-      <div class="mosaic-card olaser-1" style="min-height:120px" onclick="openModal('video', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Reel · Depilação Laser')">
+      <div class="mosaic-card" style="min-height:120px; background-image: url('./assets/img/olaser-capa-reel-depilacao.jpg'); background-size: cover; background-position: center;" onclick="openModal('video', './assets/videos/olaser-reel-depilacao.mp4', 'Reel · Depilação Laser')">
         <span class="card-label">Reel · Depilação Laser 🎥</span>
       </div>
-      <div class="mosaic-card olaser-2" style="min-height:120px" onclick="openModal('video', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Laser Lavieen')">
+      
+      <div class="mosaic-card" style="min-height:120px; background-image: url('./assets/img/olaser-capa-lavieen.jpg'); background-size: cover; background-position: center;" onclick="openModal('video', './assets/videos/olaser-lavieen.mp4', 'Laser Lavieen')">
         <span class="card-label">Laser Lavieen 🎥</span>
       </div>
     </div>
@@ -662,22 +658,22 @@
     <div style="margin-top:1.5rem">
       <div class="mosaic mosaic--2">
         <!-- 1. Sócios Operadores (5 slides) -->
-        <div class="mosaic-card axxis-1" style="min-height:200px" onclick="openModal('carousel', 'https://placehold.co/800x1000/0f1923/ffffff?text=Slide+1,https://placehold.co/800x1000/1a2e3b/ffffff?text=Slide+2,https://placehold.co/800x1000/0f1923/ffffff?text=Slide+3,https://placehold.co/800x1000/1a2e3b/ffffff?text=Slide+4,https://placehold.co/800x1000/0f1923/ffffff?text=Slide+5', 'Sócios Operadores')">
+        <div class="mosaic-card" style="min-height:200px; background-image: url('./assets/img/axxis-capa-socios.jpg'); background-size: cover; background-position: center;" onclick="openModal('carousel', './assets/img/axxis-socios-1.jpg,./assets/img/axxis-socios-2.jpg,./assets/img/axxis-socios-3.jpg,./assets/img/axxis-socios-4.jpg,./assets/img/axxis-socios-5.jpg', 'Sócios Operadores')">
           <span class="card-label">Sócios Operadores (5 Slides) ⟷</span>
         </div>
         
         <!-- 2. Redução de IRPJ e CSLL (4 slides) -->
-        <div class="mosaic-card axxis-3" style="min-height:200px" onclick="openModal('carousel', 'https://placehold.co/800x1000/0b2545/ffffff?text=Slide+1,https://placehold.co/800x1000/134074/ffffff?text=Slide+2,https://placehold.co/800x1000/0b2545/ffffff?text=Slide+3,https://placehold.co/800x1000/134074/ffffff?text=Slide+4', 'Redução de IRPJ e CSLL')">
+        <div class="mosaic-card" style="min-height:200px; background-image: url('./assets/img/axxis-capa-irpj.jpg'); background-size: cover; background-position: center;" onclick="openModal('carousel', './assets/img/axxis-irpj-1.jpg,./assets/img/axxis-irpj-2.jpg,./assets/img/axxis-irpj-3.jpg,./assets/img/axxis-irpj-4.jpg', 'Redução de IRPJ e CSLL')">
           <span class="card-label">Redução de IRPJ e CSLL (4 Slides) ⟷</span>
         </div>
         
         <!-- 3. Sua empresa não cresce se você estiver preso ao financeiro (4 slides) -->
-        <div class="mosaic-card axxis-4" style="min-height:200px" onclick="openModal('carousel', 'https://placehold.co/800x1000/13262f/ffffff?text=Slide+1,https://placehold.co/800x1000/1b4965/ffffff?text=Slide+2,https://placehold.co/800x1000/13262f/ffffff?text=Slide+3,https://placehold.co/800x1000/1b4965/ffffff?text=Slide+4', 'Sua empresa não cresce se você estiver preso ao financeiro')">
+        <div class="mosaic-card" style="min-height:200px; background-image: url('./assets/img/axxis-capa-cresce.jpg'); background-size: cover; background-position: center;" onclick="openModal('carousel', './assets/img/axxis-cresce-1.jpg,./assets/img/axxis-cresce-2.jpg,./assets/img/axxis-cresce-3.jpg,./assets/img/axxis-cresce-4.jpg', 'Sua empresa não cresce se você estiver preso ao financeiro')">
           <span class="card-label">Sua empresa não cresce se... (4 Slides) ⟷</span>
         </div>
 
         <!-- 4. A armadilha do simples (5 slides) -->
-        <div class="mosaic-card axxis-5" style="min-height:200px" onclick="openModal('carousel', 'https://placehold.co/800x1000/0f2027/ffffff?text=Slide+1,https://placehold.co/800x1000/203a43/ffffff?text=Slide+2,https://placehold.co/800x1000/0f2027/ffffff?text=Slide+3,https://placehold.co/800x1000/203a43/ffffff?text=Slide+4,https://placehold.co/800x1000/0f2027/ffffff?text=Slide+5', 'A armadilha do simples')">
+        <div class="mosaic-card" style="min-height:200px; background-image: url('./assets/img/axxis-capa-armadilha.jpg'); background-size: cover; background-position: center;" onclick="openModal('carousel', './assets/img/axxis-armadilha-1.jpg,./assets/img/axxis-armadilha-2.jpg,./assets/img/axxis-armadilha-3.jpg,./assets/img/axxis-armadilha-4.jpg,./assets/img/axxis-armadilha-5.jpg', 'A armadilha do simples')">
           <span class="card-label">A armadilha do simples (5 Slides) ⟷</span>
         </div>
       </div>
@@ -686,10 +682,10 @@
     <!-- Outros Projetos Axxis -->
     <div style="margin-top:1.5rem">
       <div class="mosaic mosaic--2">
-        <div class="mosaic-card" style="background:linear-gradient(135deg,#0d1b2a 0%,#1b2838 100%);min-height:160px" onclick="openModal('image', 'https://placehold.co/800x800/0d1b2a/ffffff?text=Celebra+7+Anos', 'Endomarketing · Celebra Axxis 7 Anos')">
+        <div class="mosaic-card" style="min-height:160px; background-image: url('./assets/img/axxis-capa-celebra.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/axxis-celebra.jpg', 'Endomarketing · Celebra Axxis 7 Anos')">
           <span class="card-label">Endomarketing · Celebra Axxis 7 Anos</span>
         </div>
-        <div class="mosaic-card" style="background:linear-gradient(135deg,#0d1b2a 0%,#23344a 100%);min-height:160px" onclick="openModal('image', 'https://placehold.co/800x800/23344a/ffffff?text=Reforma+Tributaria', 'Blog · Reforma Tributária')">
+        <div class="mosaic-card" style="min-height:160px; background-image: url('./assets/img/axxis-capa-reforma.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/axxis-reforma.jpg', 'Blog · Reforma Tributária')">
           <span class="card-label">Blog · Reforma Tributária</span>
         </div>
       </div>
@@ -701,10 +697,13 @@
     <div class="client-name">Vinelly Criativ &amp; Outros</div>
     <p class="client-desc">Projetos variados: identidade visual, social media para academia, cafeteria e campanhas sazonais.</p>
     <div class="mosaic mosaic--4">
-      <div class="mosaic-card vin-1" onclick="openModal('video', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Academia · Reel')"><span class="card-label">Academia · Reel 🎥</span></div>
-      <div class="mosaic-card vin-2" onclick="openModal('image', 'https://placehold.co/800x800/2d132c/ffffff?text=Dia+da+Mulher', 'Dia da Mulher')"><span class="card-label">Dia da Mulher</span></div>
-      <div class="mosaic-card vin-3" onclick="openModal('image', 'https://placehold.co/800x800/c72c41/ffffff?text=Promo+Verao', 'Promo Verão')"><span class="card-label">Promo Verão</span></div>
-      <div class="mosaic-card vin-4" onclick="openModal('image', 'https://placehold.co/800x800/6a4c93/ffffff?text=Bella+Luna+Logo', 'Bella Luna Cafeteria · Logo')"><span class="card-label">Bella Luna Cafeteria · Logo</span></div>
+      <div class="mosaic-card" style="background-image: url('./assets/img/vinelly-capa-academia.jpg'); background-size: cover; background-position: center;" onclick="openModal('video', './assets/videos/vinelly-academia.mp4', 'Academia · Reel')"><span class="card-label">Academia · Reel 🎥</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/vinelly-capa-mulher.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/vinelly-mulher.jpg', 'Dia da Mulher')"><span class="card-label">Dia da Mulher</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/vinelly-capa-verao.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/vinelly-verao.jpg', 'Promo Verão')"><span class="card-label">Promo Verão</span></div>
+      
+      <div class="mosaic-card" style="background-image: url('./assets/img/vinelly-capa-logo.jpg'); background-size: cover; background-position: center;" onclick="openModal('image', './assets/img/vinelly-logo.jpg', 'Bella Luna Cafeteria · Logo')"><span class="card-label">Bella Luna Cafeteria · Logo</span></div>
     </div>
   </div>
 
